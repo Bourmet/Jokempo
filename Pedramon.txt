@@ -1,0 +1,6 @@
+Pedramon os jogadores controlam pedras de manas diferentes
+
+Fogo, Vento, Raio, Terra, Água   OU
+Pedra, Papel, Tesoura
+
+Cada um pode jogar um diferente
