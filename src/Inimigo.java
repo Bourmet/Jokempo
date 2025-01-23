@@ -1,21 +1,17 @@
-
+import java.util.List;
+import java.util.Random;
 
 public class Inimigo {
-    public int lanceInimigo = (int)(Math.random()*3);
+    private List<Carta> cartas;
 
-    public void jogar(){
-        if (this.lanceInimigo == 0){
-            System.out.println("inimigo: Pedra lançada");
-        }
-        else if (this.lanceInimigo == 1){
-            System.out.println("inimigo: Papel lançado");
-        }
-        else if (this.lanceInimigo == 2){
-            System.out.println("inimigo: Tesoura lançada");
-        }
-        else{
-            System.out.println("Não tem outras opções");
-        }
+    public Inimigo(List<Carta> cartas){
+        this.cartas = cartas;
+    }
+    public Carta jogar(){
+        Random random = new Random();
+        int escolha = random.nextInt(cartas.size());
+        return cartas.remove(escolha);
     }
     
 }
+ 
