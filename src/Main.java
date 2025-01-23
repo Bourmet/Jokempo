@@ -1,39 +1,43 @@
-import java.util.Scanner;
+import java.util.List;
 
 public class Main {
-
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        Jokmon j1 = new Jokmon();
-        System.out.println("Digite o nome do jogador:");
-        j1.Nome = scanner.nextLine();
-        System.out.println("Escolha sua jogada (0: Pedra, 1: Papel, 2: Tesoura):");
-        j1.lance = scanner.nextInt();
-            while(j1.lance < 0|| j1.lance > 2){
-                System.out.println("Apenas entre esses. Escolha sua jogada (0: Pedra, 1: Papel, 2: Tesoura):");
-                j1.lance = scanner.nextInt();
-            }
-        j1.jogar();
+        Baralho baralho = new Baralho();
+        baralho.embaralhar();
 
-        Inimigo i1 = new Inimigo();
-        i1.jogar();
-    
-        String resultado = calculo(j1.lance, i1.lanceInimigo);
+        List<Carta> maoJogador = baralho.distribuirCartas(3);
+        List<Carta> maoInimigo = baralho.distribuirCartas(3);
+        
+        Jogador jogador = new Jogador("Jogador", maoJogador);
+        Inimigo inimigo = new Inimigo(maoInimigo);
+
+        int vitoriasJogador = 0;
+        int vitoriaInimigo = 0;
+        int rounds = 1;
+
+        while (vitoriasJogador < 2 && vitoriaInimigo < 2){
+
+            Carta cartaJogador = jogador.escolheCarta();
+            Carta cartaInimigo = inimigo.jogar();
+
+            System.out.println("Jogador jogou: " + cartaJogador);
+            System.out.println("Inimigo jogou: " + cartaInimigo);
+
+            String resultado = Resultado.calcular(cartaJogador, cartaInimigo);
             System.out.println(resultado);
+        
+            if (resultado.contains("Você venceu!")){
+                vitoriasJogador++;
+            }else if(resultado.contains("Você perdeu... ")){
+                vitoriaInimigo++;
+            }
+            rounds++;
+        }
 
-        scanner.close();
-    }
-
-    public static String calculo(int lanceJogagor, int lanceIni){
-        if (lanceJogagor == lanceIni){
-            return "Empate!";
-        } else if (
-            (lanceJogagor == 0 && lanceIni == 2)||
-            (lanceJogagor == 1 && lanceIni == 0)||
-            (lanceJogagor == 2 && lanceIni == 1)) {
-            return "Venceu";
-        } else {
-            return "Você Perdeu";
+        if(vitoriasJogador == 2){
+            System.out.println("\nVocê venceu o jogo em " + rounds);
+        }else if(vitoriaInimigo ==2){
+            System.out.println("\nVocê perdeu o jogo em " + rounds);
         }
     }
 }
