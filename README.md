@@ -1,18 +1,16 @@
-## Getting Started
+# 🕹️ Jokempo - Pedra, Papel e Tesoura via API
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto é uma API simples desenvolvida com **Spring Boot** que simula partidas de Pedra, Papel e Tesoura entre você e o computador.
 
-## Folder Structure
+## 🚀 Como funciona
 
-The workspace contains two folders by default, where:
+- Você envia um JSON com seu nome e jogada (`"pedra"`, `"papel"`, ou `"tesoura"`).
+- A máquina escolhe uma jogada aleatória.
+- A API retorna quem venceu, perdeu ou se empatou.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## 🛠️ Tecnologias
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- Java 17
+- Spring Boot
+- Gradle
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
